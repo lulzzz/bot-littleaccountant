@@ -1,2 +1,3 @@
-# bot-littleaccountant
-A bot that helps you collect and manage your daily invoices, bills etc.
+# Little Accountant Bot
+
+A Skype bot that helps you collect and manage your daily spendings, bills etc.
