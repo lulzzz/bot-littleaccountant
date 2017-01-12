@@ -4,7 +4,7 @@ A Skype bot that helps you collect and manage your daily spendings, bills etc. I
 keep track of what I am spending and for what.
 
 # Abilities
-*
+* Nothing really. Please wait for an alpha :)
 
 
 # Requirements (local)
