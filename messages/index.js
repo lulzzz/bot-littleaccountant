@@ -73,7 +73,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         var filePath = require('path');
 
         // Build path to intent source file
-        var intentSourcePath = filePath.join(__dirname, '/messages/' + args.intent.toLowerCase() + '.js');
+        var intentSourcePath = filePath.join(__dirname, '/intent' + args.intent + '.js');
         var intentFileValid = true;
 
         // Check if the intent actually exists in the system.
