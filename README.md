@@ -21,19 +21,25 @@ but you should be able to host it anywhere just as you would run it locally.
 * Clone this repo
 * Run "npm install" (most importantly botframework and restify)
 * Run "node ./index.js" in the messages folder
-* Note that you need to set process.env.NODE_ENV to true to run it locally
+* Note the process.env.NODE_ENV if you want to run it locally
 * Get and run the emulator: http://docs.botframework.com/connector/tools/bot-framework-emulator
 
 
-## Privacy statement
+## Privacy statements
 The bot will store the financial data you provide in a database hosted in the Microsoft
 Azure Cloud infrastructure. That information is bound to a hashed version of your Skype ID.
 In other words: Your Skype ID is not stored directly, but replaced by a randomized ID.
+Granted, it's not really anonymous, but at least we don't store your Skype ID in the database.
 
 Also, the bot uses the Microsoft Bot Framework and LUIS, which in turn collect and analyse
 your message and message content (including your ID). Please see the Microsoft Privacy
 Statement for more information regarding their data security and privacy.
 Link: https://privacy.microsoft.com/en-gb/privacystatement
+
+We don't do anything with your data. We don't sell it, we don't analyse it, we usually don't
+look at it except for bugfixing / operations. Since this is an open source and publicily
+available project we don't really suggest you should trust us, but host the thing yourself if
+you're paranoid.
 
 
 ## Bot App links:
