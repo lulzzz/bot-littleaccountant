@@ -64,16 +64,16 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     // Default intent for unrecognised intents / requests.
     .onDefault((session, args, next) => {
         // Use a very basic flow controller.
-        // The intent given by LUIS is mapped to a js file with the prefix "intent" and the intent name.
+        // The intent given by LUIS is mapped to a js file in the folder "intents" and the intent name.
         // The file will be included and run based on the exported function.
-        // Example: The "Welcome" intent would be routet to the "intentWelcome.js" file.
+        // Example: The "Welcome" intent would be routet to the "intents/welcome.js" file.
 
         // include file system functions
         var fileSystem = require('fs');
         var filePath = require('path');
 
         // Build path to intent source file
-        var intentSourcePath = filePath.join(__dirname, '/intent' + args.intent + '.js');
+        var intentSourcePath = filePath.join(__dirname, '/intents/' + args.intent.toLowerCase() + '.js');
         var intentFileValid = true;
 
         // Check if the intent actually exists in the system.
