@@ -25,6 +25,12 @@ but you should be able to host it anywhere just as you would run it locally.
 * Get and run the emulator: http://docs.botframework.com/connector/tools/bot-framework-emulator
 
 
+# How to run tests
+* Get mocha with "npm install -g mocha"
+* Run "mocha" from the root folder
+* Depending on your internet connection, you might want to increase the timeout
+
+
 ## Privacy statements
 The bot will store the financial data you provide in a database hosted in the Microsoft
 Azure Cloud infrastructure. That information is bound to a hashed version of your Skype ID.

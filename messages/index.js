@@ -76,7 +76,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
         var intentSourcePath = filePath.join(__dirname, '/intents/' + args.intent.toLowerCase() + '.js');
         var intentFileValid = true;
 
-        // Check if the intent actually exists in the system.
+        // Check if the intent actually exists in the file system.
         try {
             // Check on the file system by trying to get stats for the file.
             var stat = fileSystem.statSync(intentSourcePath);
@@ -92,6 +92,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
             console.log('Intent is not available: ' + intentSourcePath + ' not found (' + e.code + ')');
         }
 
+        // If it exist, try to run it.
         if (intentFileValid) {
             // Require file and run action.
             var intentAction = require(intentSourcePath);
