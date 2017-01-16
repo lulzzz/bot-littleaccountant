@@ -179,5 +179,5 @@ class DocumentDBInterface {
 	}
 }
 
-// export default new DocumentDBInterface();
+// Export default new DocumentDBInterface();
 module.exports = DocumentDBInterface;

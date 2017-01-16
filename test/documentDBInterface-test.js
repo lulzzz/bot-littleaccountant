@@ -19,23 +19,21 @@ describe('createDocument', function () {
                 done();
             })
             .catch(err => {
-                assert.fail();
-                done();
+                done(err);
             })
     });
 
     it('Should fail if another document with the same id is created', function (done) {
         documentDBInterface.createDocument(testDocumentId, { 'test': testDocumentId })
             .then(document => {
-                assert.fail();
-                done();
+                done('This should have failed');
             })
             .catch(err => {
-                assert.ok(1);
                 done();
             })
     });
 });
+
 
 describe('readDocument', function () {
     it('Should be able to read an existing document without error', function (done) {
@@ -45,19 +43,16 @@ describe('readDocument', function () {
                 done();
             })
             .catch(err => {
-                assert.fail();
-                done();
+                done(err);
             })
     });
 
     it('Should fail to read a document that does not exist', function (done) {
         documentDBInterface.readDocument(testDocumentId + '1')
             .then(document => {
-                assert.fail();
-                done();
+                done('This should have failed');
             })
             .catch(err => {
-                assert.ok(1);
                 done();
             })
     });
@@ -73,47 +68,39 @@ describe('replaceDocument', function () {
                 done();
             })
             .catch(err => {
-                assert.fail();
-                done();
+                done(err);
             })
     });
 
     it('Should fail to replace a document that does not exist', function (done) {
         documentDBInterface.replaceDocument(testDocumentId + '1', { 'test_1': testDocumentId })
             .then(document => {
-                assert.fail();
-                done();
+                done('This should have failed');
             })
             .catch(err => {
-                assert.ok(1);
                 done();
             })
     });
 });
 
 
-
 describe('deleteDocument', function () {
     it('Should be able to delete an existing document without error', function (done) {
         documentDBInterface.deleteDocument(testDocumentId)
             .then(document => {
-                assert.ok(1);
                 done();
             })
             .catch(err => {
-                assert.fail();
-                done();
+                done(err);
             })
     });
 
     it('Should fail to delete a document that does not exist', function (done) {
         documentDBInterface.deleteDocument(testDocumentId + '1')
             .then(document => {
-                assert.fail();
-                done();
+                done('This should have failed');
             })
             .catch(err => {
-                assert.ok(1);
                 done();
             })
     });
