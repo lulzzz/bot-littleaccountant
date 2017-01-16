@@ -10,12 +10,12 @@
 var builder = require("botbuilder");
 var botbuilder_azure = require("botbuilder-azure");
 
-// Main method that will be exported
+// Main method that will be exported.
 var run = function (session, args, next) {
-    // show a simple answer
-    session.send('Hello there, I\'m your little accountant bot! I can help you keep track of your daily spendings, bills etc. - you tell me what you buy and what you spend your money on and I will show you summaries and infographics to help you make better choices in the future.');
+    // Show a simple answer.
+    session.send('Hello there, I\'m your little accountant bot! I can help you keep track of your daily spendings, bills etc. - you tell me what you bought and what you spend your money on and I will show you summaries and infographics to help you make better choices in the future.');
 
-    // done
+    // Done.
     return true;
 };
 
