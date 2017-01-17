@@ -48,7 +48,7 @@ var bot = new builder.UniversalBot(connector);
 // The app url is the one you will get if you publish your LUIS app.
 var luisAppId = process.env.LuisAppId;
 var luisAPIKey = process.env.LuisAPIKey;
-var luisAPIHostName = process.env.LuisAPIHostName || 'api.projectoxford.ai';
+var luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 var luisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
 
 // This creates a connection to the LUIS app.
@@ -121,7 +121,7 @@ if (useEmulator) {
     // Show a console message on startup.
     var server = restify.createServer();
     server.listen(3978, function () {
-        console.log('test bot endpont at http://localhost:3978/api/messages');
+        console.log('DEVELOPMENT MODE! Test bot endpoint at http://localhost:3978/api/messages.');
     });
 
     // Set the endpoint your bot is listening at.
