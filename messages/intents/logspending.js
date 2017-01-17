@@ -1,7 +1,8 @@
 /* ---------------------------------------------------- */
-// Recognised Help intent.
-// This is trained to listen to all kinds of help requests
-// from "help" to "what can you do?".
+// Recognised LogSpending intent.
+// This is trained to listen to all kinds of spending
+// information. Examples are "I spent $45 on new headphones",
+// "Paid 1.99€ for apples", "Oranges 2.99"
 /* ---------------------------------------------------- */
 
 // Botbuilder is the official module that provides interfaces and
@@ -28,7 +29,7 @@ var run = function (session, args, next) {
     // to the users account.
     accountingDataHandler = new AccountingDataHandler();
     accountingDataHandler.init(session.message.address.user.name)
-        .then(document => {
+        .then(userobject => {
             // Create a new spendings object. This will be filled with data
             // from the chat message and handed over to the account data handler
             // for storage.
@@ -73,13 +74,11 @@ var run = function (session, args, next) {
             var entityTopics = builder.EntityRecognizer.findAllEntities(args.entities, 'topics');
             if (entityTopics) {
                 logSpendingAnswer += ' and I will add ';
-                for (i = 0; i < entityTopics.length; i++) {
+                for (let i = 0; i < entityTopics.length; i++) {
                     spendingObject.topics.push(entityTopics[i].entity);
-                    logSpendingAnswer += entityTopics[i].entity + ', ';
+                    if (i > 0) logSpendingAnswer += ', ';
+                    logSpendingAnswer += entityTopics[i].entity;
                 }
-
-                // Remove trailing comma.
-                logSpendingAnswer = logSpendingAnswer.substr(0, (logSpendingAnswer.length - 2)) + ' as topic';
             }
 
             // Finish the response string.
@@ -87,7 +86,7 @@ var run = function (session, args, next) {
 
             // Log the spending object into the database, associated with the current user.
             accountingDataHandler.logSpending(spendingObject)
-                .then(document => {
+                .then(spending => {
                     // Show the response string as confirmation.
                     session.send(logSpendingAnswer);
                     return true;
