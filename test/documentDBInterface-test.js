@@ -20,7 +20,7 @@ describe('createDocument', function () {
             })
             .catch(err => {
                 done(err);
-            })
+            });
     });
 
     it('Should fail if another document with the same id is created', function (done) {
@@ -30,7 +30,7 @@ describe('createDocument', function () {
             })
             .catch(err => {
                 done();
-            })
+            });
     });
 });
 
@@ -44,7 +44,7 @@ describe('readDocument', function () {
             })
             .catch(err => {
                 done(err);
-            })
+            });
     });
 
     it('Should fail to read a document that does not exist', function (done) {
@@ -54,7 +54,53 @@ describe('readDocument', function () {
             })
             .catch(err => {
                 done();
+            });
+    });
+});
+
+
+describe('queryDocuments', function () {
+    it('Should be able to query all existing documents without error', function (done) {
+        documentDBInterface.createDocument(testDocumentId + '_1', { 'test': testDocumentId })
+            .then(document => {
+                var querySpec = {
+                    query: 'SELECT * FROM data'
+                };
+
+                documentDBInterface.queryDocuments(querySpec)
+                    .then(documents => {
+                        assert.equal((documents.length > 1), true);
+                        done();
+                    })
+                    .catch(err => {
+                        done(err);
+                    });
             })
+            .catch(err => {
+                done(err);
+            });
+    });
+
+    it('Should be able to query one specific document without error', function (done) {
+        var querySpec = {
+            query: 'SELECT * FROM data d WHERE  d.id = @documentid',
+            parameters: [
+                {
+                    name: '@documentid',
+                    value: testDocumentId
+                }
+            ]
+        };
+
+        documentDBInterface.queryDocuments(querySpec)
+            .then(documents => {
+                assert.equal(documents.length, 1);
+                assert.equal(documents[0].id, testDocumentId);
+                done();
+            })
+            .catch(err => {
+                done(err);
+            });
     });
 });
 
@@ -69,7 +115,7 @@ describe('replaceDocument', function () {
             })
             .catch(err => {
                 done(err);
-            })
+            });
     });
 
     it('Should fail to replace a document that does not exist', function (done) {
@@ -79,7 +125,7 @@ describe('replaceDocument', function () {
             })
             .catch(err => {
                 done();
-            })
+            });
     });
 });
 
@@ -92,7 +138,17 @@ describe('deleteDocument', function () {
             })
             .catch(err => {
                 done(err);
+            });
+    });
+
+    it('Should be able to delete a second document without error', function (done) {
+        documentDBInterface.deleteDocument(testDocumentId + '_1')
+            .then(document => {
+                done();
             })
+            .catch(err => {
+                done(err);
+            });
     });
 
     it('Should fail to delete a document that does not exist', function (done) {
@@ -102,6 +158,6 @@ describe('deleteDocument', function () {
             })
             .catch(err => {
                 done();
-            })
+            });
     });
 });

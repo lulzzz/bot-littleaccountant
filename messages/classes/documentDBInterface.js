@@ -71,7 +71,7 @@ class DocumentDBInterface {
 
 				// If the object could be created, resolve the promise and hand back the DB object.
 				return resolve(createdDocument);
-			})
+			});
 		});
 	}
 
@@ -100,11 +100,38 @@ class DocumentDBInterface {
 					return reject(err);
 				}
 
-				// If the object could be found, resolve the promise and hand back the DB object.
+				// If the document could be found, resolve the promise and hand back the DB object.
 				return resolve(foundDocument);
-			})
+			});
 		});
 	}
+
+	/**
+	 * Get an exiting document from the database.
+	 *
+	 * Promised.
+	 *
+	 * @param {QueryIterator} querySpec A database query as defined in the DocumentDB SDK.
+     * @returns {Promise.Array|String} A promise for the database read.
+	 * Resolve: Returns an array of documents including their meta data.
+	 * Reject: Returns the error message as given by the DocumentDB.
+	 */
+	queryDocuments(querySpec) {
+		// Initialise the promise.
+		return new Promise((resolve, reject) => {
+			this.client.queryDocuments(this.collectionLink, querySpec).toArray((err, foundDocuments) => {
+				// Check if there was an error.
+				if (err) {
+					// If so, reject the promise with the given error message.
+					return reject(err);
+				}
+
+				// If any documents could be found, resolve the promise and hand back the DB object.
+				return resolve(foundDocuments);
+			});
+		});
+	}
+
 
 	/**
 	 * Replace an existing document in the database. Note that this will fail if no object with this ID
@@ -143,7 +170,7 @@ class DocumentDBInterface {
 
 				// If the object could be updated, resolve the promise and hand back the DB object.
 				return resolve(replacedDocument);
-			})
+			});
 		});
 	}
 
@@ -174,7 +201,7 @@ class DocumentDBInterface {
 
 				// If the object could be deleted, resolve the promise.
 				return resolve(true);
-			})
+			});
 		});
 	}
 }
