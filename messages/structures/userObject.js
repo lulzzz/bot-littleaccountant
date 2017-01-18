@@ -10,7 +10,10 @@ function UserObject() {
     // TODO: Remove this.
     // Store the user id in the database for testing / debugging reasons
     // during pre-alpha.
-    this.userName = '';
+    this.name = '';
+
+    // Date / time the user was created.
+    this.created = new Date();
 }
 
 module.exports = UserObject;

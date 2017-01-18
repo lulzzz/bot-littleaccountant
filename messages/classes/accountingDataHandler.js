@@ -77,7 +77,7 @@ class AccountingDataHandler {
 					// TODO: Remove this.
 					// Store the user id in the database for testing / debugging reasons
 					// during pre-alpha.
-					newUserObject.userName = userId;
+					newUserObject.name = userId;
 
 					// Store the newly created user object in the database.
 					this.documentDBInterface.createDocument(this.userHash, newUserObject)
@@ -147,24 +147,8 @@ class AccountingDataHandler {
 	getSpendings(topics, periodStart, periodEnd) {
 		// Initialise the promise.
 		return new Promise((resolve, reject) => {
-			// Initialise query string. This will be extended as we go along.
+			// Initialise query string and spec. They will be extended as we go along.
 			let queryString = 'SELECT * FROM data d WHERE ';
-
-			// Include topic filters in the query.
-			if ((topics) && (typeof topics === 'object')) {
-				// each topic is added as individual ARRAY_CONTAINS clause.
-				queryString += '( ';
-				for (let i = 0; i < topics.length; i++) {
-					queryString += 'ARRAY_CONTAINS(d.topics, "' + topics[i] + '") ';
-					if (i < (topics.length - 1)) queryString += 'OR ';
-				}
-				queryString += ') AND ';
-			}
-
-			// Query string is complete. Add the clause to only search for entries
-			// associated with the current user. Also, only documents of type
-			// SpendingObject are relevant.
-			queryString += 'd.type = "SpendingObject" AND d.user = @hashedUserId';
 			let querySpec = {
 				query: queryString,
 				parameters: [
@@ -175,8 +159,38 @@ class AccountingDataHandler {
 				]
 			};
 
+			// Include topic filters in the query.
+			if ((topics) && (typeof topics === 'object') && (topics.length > 0)) {
+				// each topic is added as individual ARRAY_CONTAINS clause.
+				queryString += '( ';
+				for (let i = 0; i < topics.length; i++) {
+					queryString += 'ARRAY_CONTAINS(d.topics, @topic' + i + ') ';
+					querySpec.parameters.push({ name: '@topic' + i, value: topics[i] });
+					if (i < (topics.length - 1)) queryString += 'OR ';
+				}
+				queryString += ') AND ';
+			}
+
+			// Include a start period from which to search.
+			if (periodStart) {
+				queryString += 'd.date >= @startdate AND ';
+				querySpec.parameters.push({ name: '@startdate', value: periodStart });
+			}
+
+			// Include an end period to search up to.
+			if (periodEnd) {
+				queryString += 'd.date <= @enddate AND ';
+				querySpec.parameters.push({ name: '@enddate', value: periodEnd });
+			}
+
+			// Query string is complete. Add the clause to only search for entries
+			// associated with the current user. Also, only documents of type
+			// SpendingObject are relevant.
+			queryString += 'd.type = "SpendingObject" AND d.user = @hashedUserId';
+			querySpec.query = queryString;
+
 			// Execute the query and return all found spending documents.
-			documentDBInterface.queryDocuments(querySpec)
+			this.documentDBInterface.queryDocuments(querySpec)
 				.then(spendings => {
 					return resolve(spendings);
 				})

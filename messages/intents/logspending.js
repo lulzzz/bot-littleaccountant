@@ -65,7 +65,6 @@ var run = function (session, args, next) {
             // For now, a location is just another topic added to the spending.
             var entityLocation = builder.EntityRecognizer.findEntity(args.entities, 'location');
             if (entityLocation) {
-                console.log('Location: ' + entityLocation.entity);
                 spendingObject.topics.push(entityLocation.entity);
             }
 
