@@ -5,15 +5,15 @@ keep track of what I am spending and for what.
 
 # Abilities
 * You can log individual spendings. Optionally you can describe what you spent the money on to be able to search, filter and group your spendings later on.
-* * "Went shopping in New York and bought new clothes for 199"
-* * "I spent $45 on new headphones"
-* * "Paid 1.99€ for apples"
-* * "Bought oranges for 2.99 yesterday"
-* * "Oranges 2.99"
+ * "Went shopping in New York and bought new clothes for 199"
+ * "I spent $45 on new headphones"
+ * "Paid 1.99€ for apples"
+ * "Bought oranges for 2.99 yesterday"
+ * "Oranges 2.99"
 * You can get a summary of your spendings, filtered by time or topic. If you don't specify a period or topic, the bot will aggregate everything.
-* * "How much did I spent this month?"
-* * "How much did I spent on clothes?"
-* * "How much did I spent?"
+ * "How much did I spent this month?"
+ * "How much did I spent on clothes?"
+ * "How much did I spent?"
 
 
 # Requirements (local)
@@ -33,10 +33,10 @@ but you should be able to host it anywhere just as you would run it locally.
 * Run "npm install" (most importantly botframework and restify)
 * Note that you need a LUIS app to analyse the user input. You can create a new one at https://www.luis.ai/ and import the training data from /LUIS.
 * Note the environment variables:
-* * In general 'NODE_ENV' defines your node environment, indicating where you run the bot. Usually 'development' for local use
-* * LUIS needs 'LuisAppId' and 'LuisAPIKey'
-* * The database needs 'DocumentDBHost', 'DocumentDBMasterKey', 'DocumentDBDatabase' and 'DocumentDBCollection' as access credentials
-* * If you run it live, you also need to set the MS Bot Framework IDs: 'MicrosoftAppId', 'MicrosoftAppPassword', 'BotStateEndpoint', 'BotOpenIdMetadata'
+ * In general 'NODE_ENV' defines your node environment, indicating where you run the bot. Usually 'development' for local use
+ * LUIS needs 'LuisAppId' and 'LuisAPIKey'
+ * The database needs 'DocumentDBHost', 'DocumentDBMasterKey', 'DocumentDBDatabase' and 'DocumentDBCollection' as access credentials
+ * If you run it live, you also need to set the MS Bot Framework IDs: 'MicrosoftAppId', 'MicrosoftAppPassword', 'BotStateEndpoint', 'BotOpenIdMetadata'
 * Run "node ./index.js" in the messages folder
 * Get and run the emulator: http://docs.botframework.com/connector/tools/bot-framework-emulator
 

@@ -1,0 +1,1893 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "LittleAccountant",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "Help"
+    },
+    {
+      "name": "LogSpending"
+    },
+    {
+      "name": "None"
+    },
+    {
+      "name": "ShowSummary"
+    },
+    {
+      "name": "showTopics"
+    },
+    {
+      "name": "Welcome"
+    }
+  ],
+  "entities": [
+    {
+      "name": "amount"
+    },
+    {
+      "name": "currency"
+    },
+    {
+      "name": "location"
+    },
+    {
+      "name": "topics"
+    }
+  ],
+  "composites": [],
+  "closedLists": [],
+  "bing_entities": [
+    "datetime",
+    "geography"
+  ],
+  "actions": [],
+  "model_features": [],
+  "regex_features": [
+    {
+      "name": "topics",
+      "pattern": "#\\w+",
+      "activated": true
+    }
+  ],
+  "utterances": [
+    {
+      "text": "i spent 100€",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "hi",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hi there",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hello",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hello there",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hi?",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hello?",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "yo",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "hey",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "welcome",
+      "intent": "Welcome",
+      "entities": []
+    },
+    {
+      "text": "what can you do?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what can i do?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "i need help?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what now?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what do i do?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what do i do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what can i do",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "what should i do?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "how do you work?",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "help me",
+      "intent": "Help",
+      "entities": []
+    },
+    {
+      "text": "log 100€",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "currency",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i spend 100$",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i spent 200$",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i just spend 100$",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "currency",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 100 usd",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i spent 0.99 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        },
+        {
+          "entity": "currency",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i spent 1,99 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        },
+        {
+          "entity": "currency",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i spend 100$ on trousers",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "1.99$ #coffee",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 0,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "paid 9.50 for lunch at siamoqua in barcelona #lunch",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "location",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "topics",
+          "startPos": 11,
+          "endPos": 11
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "paid $99.99 for steak at meatpackers in new york on last monday",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "location",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        },
+        {
+          "entity": "currency",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid $23 for office today",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid 24,00€",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        },
+        {
+          "entity": "currency",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "just paid 10,99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i paid 2.99 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        },
+        {
+          "entity": "currency",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i spent 1.99 on clothes",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i paid 3 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i spend 1.99 on clothes",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i paid 200 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i paid 2,99 euro",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        },
+        {
+          "entity": "currency",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "i spent 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 1.99 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 1.99 on food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 25 euro on food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "spent 100 on food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid 23 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid 1200 for a new television",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid 20 iphone headphones",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "paid 20 for new apple headphones",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "bought new headphones for 200",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "bought food for 10,99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "amount",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "bought apples for 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "amount",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "clothes 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "brot 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "clothing for 100.90",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "food for 10.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "toys for 99.-",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "furniture for 245.-€",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "currency",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "new headphones for 49,99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 1,
+          "endPos": 1
+        },
+        {
+          "entity": "amount",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "1.99 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "food for 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "vitamins for 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "log 1.99 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i bought a stereo for 499",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "amount",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "vitamins 1.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 1.99 for vitamnins",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "1,99 for vitamins",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "log 4.99 for bread and butter",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "topics",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i bought appliances for 29.95",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "i bought coke and coffee for 27.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 6,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "paid 49 for toys and books",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "log 14.99 for burgers and fries",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "topics",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 9.99 for coffee and cake",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "topics",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 15.99 for burgers and fries",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "topics",
+          "startPos": 7,
+          "endPos": 7
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i had coffee & cookies for 6.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 6,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "i had coffee and cookies for 4.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 6,
+          "endPos": 8
+        }
+      ]
+    },
+    {
+      "text": "coffee & cookies 4.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 3,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "3.99 crackers and cheese",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 3,
+          "endPos": 3
+        },
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 0,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i bought vitamins",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "coffee and cookies for 4.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "coffee and cookies for 4.99 user",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "spent 4.99 on coffee",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "coffee for 4.99",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 0,
+          "endPos": 0
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 5.99 on clothes",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 1.99 on coffee",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "log 1.99 for coffee",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i spent 2.99 on games",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 9.99 on coffee and cigarettes",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "topics",
+          "startPos": 8,
+          "endPos": 8
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "i spent 20 on food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "i spent 4.99 on coffee",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        },
+        {
+          "entity": "amount",
+          "startPos": 2,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "log 3.95 for oranges",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 4.99 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 10.99 for vegetables",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 3.49 for food",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "log 4.99 for sweets",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        },
+        {
+          "entity": "amount",
+          "startPos": 1,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "i bought sweets for 8.99 yesterday",
+      "intent": "LogSpending",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "amount",
+          "startPos": 4,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "what did i spent this month?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "what's my total for the week?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "how much did i spent?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "what did i spent?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "my spendings?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "show me a summary",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "show me the summary",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "summary",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "summary this week",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "summary this month",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "summary yesterday",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "how much did i spent today?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "spendings today",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "spendings this week",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "total this week",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "total this month",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "totals this month",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "totals yesterday",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
+      "text": "how much did i spent on clothes?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "what did i spent on clothes?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "summary for coffee",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "total for coffee",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "total music",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 1,
+          "endPos": 1
+        }
+      ]
+    },
+    {
+      "text": "total for music and coffee",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        },
+        {
+          "entity": "topics",
+          "startPos": 4,
+          "endPos": 4
+        }
+      ]
+    },
+    {
+      "text": "show me the summary for coffee this week",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spent on clothes this week?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "how much did i spent on clothes this week?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "how much money did i spent on clothes this year?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 7,
+          "endPos": 7
+        }
+      ]
+    },
+    {
+      "text": "what did i spent on coffee last week?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spent on coffee?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spend on coffee?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spent on sweets?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spent for fruits?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spend on fruits?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "what did i spend on music?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "how much did i spend on music?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "how much did i spend on fruits?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "how much did i spend on tomatoes?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "how much did i spend on food?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "show me what i spent for sweets",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "what did i spend on sweets?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 5,
+          "endPos": 5
+        }
+      ]
+    },
+    {
+      "text": "summary for sweets",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "what did i spent my money on?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what did i buy?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what have i bought?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what did i spent money on?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "show what i bought",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what did i buy yesterday?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what did i buy today?",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "show what i bought this month",
+      "intent": "showTopics",
+      "entities": []
+    },
+    {
+      "text": "what did i buy this month?",
+      "intent": "showTopics",
+      "entities": []
+    }
+  ]
+}
