@@ -25,40 +25,42 @@ var run = function (session, args, next) {
     // Note that this will use the current user as identifier. The handler will tie all data
     // to the users account.
     accountingDataHandler = new AccountingDataHandler();
-    console.log(session.message.address.user.name);
     accountingDataHandler.init(session.message.address.user.name)
         .then(document => {
+            let filterTopics = [];
 
-/*
             // Theoretically there can be an unlimited amount of topics identified by LUIS
             // that can be used as filters.
             var entityTopics = builder.EntityRecognizer.findAllEntities(args.entities, 'topics');
+            let spendingTopicMessage = '';
             if (entityTopics) {
+                spendingTopicMessage += ' on ';
                 for (i = 0; i < entityTopics.length; i++) {
-                    spendingObject.topics.push(entityTopics[i].entity);
-                    logSpendingAnswer += entityTopics[i].entity + ', ';
+                    filterTopics.push(entityTopics[i].entity);
+                    spendingTopicMessage += entityTopics[i].entity + ', ';
                 }
 
                 // Remove trailing comma.
-                logSpendingAnswer = logSpendingAnswer.substr(0, (logSpendingAnswer.length - 2)) + ' as topic';
-            }
-*/
-
-            console.log(args.entities);
-
-            let totalSpendings = 0.0;
-
-            console.log(JSON.stringify(accountingDataHandler.userData));
-
-            // At this stage all user data should be available in accountingDataHandler.userData.
-            // All spendings should be available in accountingDataHandler.userData.spendings[].
-            // Iterate through all spending entries and aggregate accordingly.
-            for (i = 0; i < accountingDataHandler.userData.spendings.length; i++) {
-                console.log(i);
-                totalSpendings += parseFloat(accountingDataHandler.userData.spendings[i].amount);
+                spendingTopicMessage = spendingTopicMessage.substr(0, (spendingTopicMessage.length - 2));
             }
 
-            session.send('You spent ' + totalSpendings + ' so far.');
+//            startedOn >= 2015-03-24 AND startedOn < 2015-03-25
+
+            accountingDataHandler.getSpendings(filterTopics, '2017-01-18T16:00:01.197Z')
+                .then(spendings => {
+                    let totalSpendings = 0.0;
+                    // Iterate through all spending entries and aggregate accordingly.
+                    for (i = 0; i < spendings.length; i++) {
+                        totalSpendings += parseFloat(spendings[i].amount);
+                    }
+
+                    totalSpendings = totalSpendings.toFixed(2);
+                    session.send('You spent ' + totalSpendings + ' so far' + spendingTopicMessage + '.');
+                })
+                .catch(err => {
+                    // Something went wrong with the initialisation. Inform the user the summary can not be shown.
+                    session.send('Unfortunately I could not show your summary because of an accounting issue. Could you please try again? If this happens frequently, please contact the administrator. Thank you.');
+                })
 
         })
         .catch(err => {
