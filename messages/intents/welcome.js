@@ -15,7 +15,7 @@ var botbuilder_azure = require("botbuilder-azure");
 // Main method that will be exported.
 var run = function (session, args, next) {
     // Show a simple answer.
-    session.send("Oh, hello! Nice to see you!");
+    session.send("Oh, hello " + session.message.address.user.name + "! Nice to see you!");
 
     // Done.
     return true;

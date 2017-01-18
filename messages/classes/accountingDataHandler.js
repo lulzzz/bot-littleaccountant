@@ -74,6 +74,11 @@ class AccountingDataHandler {
 					// Create a new empty object for the user.
 					var newUserObject = new UserObject();
 
+					// TODO: Remove this.
+					// Store the user id in the database for testing / debugging reasons
+					// during pre-alpha.
+					newUserObject.userName = userId;
+
 					// Store the newly created user object in the database.
 					this.documentDBInterface.createDocument(this.userHash, newUserObject)
 						.then(document => {
