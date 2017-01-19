@@ -1,9 +1,9 @@
 /* ---------------------------------------------------- */
-// Recognised ShowSummary intent.
-// This is trained to listen to requests for a summary or
-// a subtotal for a given timeframe.
-// Examples are "What did I spent this month?", "What's my
-// total for the week?", "How much did I spent?"
+// Recognised ShowTopics intent.
+// This is trained to listen to requests for a
+// of your spending by topic.
+// Examples are "What did I buy this month?", "What did
+// I spend my money on?""
 /* ---------------------------------------------------- */
 
 // Botbuilder is the official module that provides interfaces and
@@ -27,21 +27,9 @@ var run = function (session, args, next) {
     accountingDataHandler = new AccountingDataHandler();
     accountingDataHandler.init(session.message.address.user.name)
         .then(document => {
-            // Theoretically there can be an unlimited amount of topics identified by LUIS
-            // that can be used as filters.
+            // Note: It does not make sense to filter by topics as this is exactly
+            // what the user wants to know. So filterTopics should always be empty.
             let filterTopics = [];
-            var entityTopics = builder.EntityRecognizer.findAllEntities(args.entities, 'topics');
-            let spendingTopicMessage = '';
-            if (entityTopics.length > 0) {
-                spendingTopicMessage += ' on ';
-                for (i = 0; i < entityTopics.length; i++) {
-                    filterTopics.push(entityTopics[i].entity);
-                    spendingTopicMessage += entityTopics[i].entity + ', ';
-                }
-
-                // Remove trailing comma.
-                spendingTopicMessage = spendingTopicMessage.substr(0, (spendingTopicMessage.length - 2));
-            }
 
             // Get identified date time and create a date object from it to use in the query.
             var entityTopics = builder.EntityRecognizer.findEntity(args.entities, 'builtin.datetime.date');
@@ -51,25 +39,35 @@ var run = function (session, args, next) {
             // Get all spendings from the database.
             accountingDataHandler.getSpendings(filterTopics, startDate)
                 .then(spendings => {
-                    let totalSpendings = 0.0;
-                    // Iterate through all spending entries and aggregate accordingly.
+                    // Iterate through all spending entries and aggregate based on topics.
+                    let topcSpendingArray = [];
                     for (i = 0; i < spendings.length; i++) {
-                        totalSpendings += parseFloat(spendings[i].amount);
+                        if (spendings[i].topics.length > 0) {
+                            if (!topcSpendingArray[spendings[i].topics[0]]) topcSpendingArray[spendings[i].topics[0]] = 0.0;
+                            topcSpendingArray[spendings[i].topics[0]] += parseFloat(spendings[i].amount);
+                        } else {
+                            topcSpendingArray['other spendings'] += spendings[i].amount;
+                        }
+                    }
+
+                    // Iterate through all found topics and aggregated spendings.
+                    let spendingTopicMessage = "You spent:\n";
+                    for (property in topcSpendingArray) {
+                        spendingTopicMessage += '* ' + topcSpendingArray[property] + ' on ' + property + "\n";
                     }
 
                     // Send final message to the user.
-                    totalSpendings = totalSpendings.toFixed(2);
-                    session.send('You spent ' + totalSpendings + ' so far' + spendingTopicMessage + '.');
+                    session.send(spendingTopicMessage);
                 })
                 .catch(err => {
                     // Something went wrong with the database query. Inform the user the summary can not be shown.
-                    session.send('Unfortunately I could not show your summary because of an accounting issue. Could you please try again? If this happens frequently, please contact the administrator. Thank you.');
+                    session.send('Unfortunately I could not show your spendings overview because of an accounting issue. Could you please try again? If this happens frequently, please contact the administrator. Thank you.');
                 })
 
         })
         .catch(err => {
             // Something went wrong with the initialisation. Inform the user the summary can not be shown.
-            session.send('Unfortunately I could not show your summary because of a user session issue. Could you please try again? If this happens frequently, please contact the administrator. Thank you.');
+            session.send('Unfortunately I could not show your spendings overview because of a user session issue. Could you please try again? If this happens frequently, please contact the administrator. Thank you.');
         })
 
     // Done.

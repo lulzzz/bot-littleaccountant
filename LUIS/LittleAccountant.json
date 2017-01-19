@@ -17,7 +17,7 @@
       "name": "ShowSummary"
     },
     {
-      "name": "showTopics"
+      "name": "ShowTopics"
     },
     {
       "name": "Welcome"
@@ -1845,48 +1845,64 @@
       ]
     },
     {
+      "text": "how much did i spend on sweets?",
+      "intent": "ShowSummary",
+      "entities": [
+        {
+          "entity": "topics",
+          "startPos": 6,
+          "endPos": 6
+        }
+      ]
+    },
+    {
+      "text": "how much money did i spend?",
+      "intent": "ShowSummary",
+      "entities": []
+    },
+    {
       "text": "what did i spent my money on?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what did i buy?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what have i bought?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what did i spent money on?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "show what i bought",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what did i buy yesterday?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what did i buy today?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "show what i bought this month",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     },
     {
       "text": "what did i buy this month?",
-      "intent": "showTopics",
+      "intent": "ShowTopics",
       "entities": []
     }
   ]
