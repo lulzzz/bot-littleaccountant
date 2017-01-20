@@ -44,14 +44,40 @@ var run = function (session, args, next) {
             }
 
             // Get identified date time and create a date object from it to use in the query.
-            var entityTopics = builder.EntityRecognizer.findEntity(args.entities, 'builtin.datetime.date');
-            let entityDate = entityTopics.resolution;
-            let startDate = new Date(entityDate.date);
+            let startDate = '';
+            let endDate = '';
+            var dateEntitiesArray = builder.EntityRecognizer.findAllEntities(args.entities, 'builtin.datetime.date');
+
+            if ((dateEntitiesArray) && (dateEntitiesArray.length > 0)) {
+                // This means that at least one date time information was found.
+                // Pick the first one and analyze it.
+                let tempDate = dateEntitiesArray[0].resolution.date;
+
+                // We need to mind some edge cases here. For example LUIS treats week information
+                // as "2017-W03" or similar, meaning it will not give you always an information that
+                // new Date() will recognize.
+                if (tempDate.indexOf("-W") > -1) {
+                    // We test for this week edge case first.
+                    // Extract the information from the date.
+                    let tempYear = tempDate.substr(0, tempDate.indexOf("-W"));
+                    let tempWeeks = tempDate.substr(tempDate.indexOf("-W") + 2);
+                    // Calculate the number of days in the year and create a new date from it.
+                    let daysSinceYearStart = (1 + (tempWeeks - 1) * 7);
+                    startDate = new Date(tempYear, 0, daysSinceYearStart);
+                    endDate = new Date(tempYear, 0, (daysSinceYearStart + 7));
+                } else {
+                    // Otherwise it's a standard date case that new Date() can handle.
+                    startDate = new Date(tempDate);
+                }
+            }
 
             // Get all spendings from the database.
-            accountingDataHandler.getSpendings(filterTopics, startDate)
+            accountingDataHandler.getSpendings(filterTopics, startDate, endDate)
                 .then(spendings => {
+                    // Start creating the answer.
+                    let spendingSummaryMessage = 'You spent ';
                     let totalSpendings = 0.0;
+
                     // Iterate through all spending entries and aggregate accordingly.
                     for (i = 0; i < spendings.length; i++) {
                         totalSpendings += parseFloat(spendings[i].amount);
@@ -59,7 +85,21 @@ var run = function (session, args, next) {
 
                     // Send final message to the user.
                     totalSpendings = totalSpendings.toFixed(2);
-                    session.send('You spent ' + totalSpendings + ' so far' + spendingTopicMessage + '.');
+                    spendingSummaryMessage += totalSpendings;
+
+                    // Add the date restriction.
+                    if ((dateEntitiesArray) && (dateEntitiesArray.length > 0)) {
+                        spendingSummaryMessage += ' ' + dateEntitiesArray[0].entity;
+                    } else {
+                        spendingSummaryMessage += ' so far'
+                    }
+                    spendingSummaryMessage += '.'
+
+                    // Add the topic.
+                    spendingSummaryMessage += spendingTopicMessage;
+
+                    // Send message.
+                    session.send(spendingSummaryMessage);
                 })
                 .catch(err => {
                     // Something went wrong with the database query. Inform the user the summary can not be shown.
