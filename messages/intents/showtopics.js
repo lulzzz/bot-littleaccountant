@@ -35,7 +35,7 @@ var run = function (session, args, next) {
             let startDate = '';
             let endDate = '';
             var dateEntitiesArray = builder.EntityRecognizer.findAllEntities(args.entities, 'builtin.datetime.date');
-            if (dateEntitiesArray) {
+            if ((dateEntitiesArray) && (dateEntitiesArray.length > 0)) {
                 // This means that at least one date time information was found.
                 // Pick the first one and analyze it.
                 let tempDate = dateEntitiesArray[0].resolution.date;
@@ -57,9 +57,6 @@ var run = function (session, args, next) {
                     startDate = new Date(tempDate);
                 }
             }
-
-            console.log(startDate);
-            console.log(endDate);
 
             // Get all spendings from the database.
             accountingDataHandler.getSpendings(filterTopics, startDate, endDate)
