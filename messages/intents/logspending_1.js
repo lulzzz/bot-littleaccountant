@@ -88,6 +88,7 @@ var run = function (session, args, next) {
                 .then(spending => {
                     // Show the response string as confirmation.
                     session.send(logSpendingAnswer);
+                    session.send("If this was wrong, please say 'undo' or 'remove'.");
                     return true;
                 })
                 .catch(err => {

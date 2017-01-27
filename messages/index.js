@@ -54,6 +54,10 @@ var luisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + l
 // This creates a connection to the LUIS app.
 var recognizer = new builder.LuisRecognizer(luisModelUrl);
 
+var FrontController = require("./classes/frontController");
+var frontController = new FrontController();
+var functionsArray = [];
+
 // Instead of dialogs, LUIS works with intents
 // you define these within your LUIS app, which will then used
 // as triggers for your app when LUIS identifies them.
@@ -61,50 +65,21 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     .matches('None', (session, args) => {
         session.send('Hi! This is the None intent handler. You said: \'%s\'.', session.message.text);
     })
-    // Default intent for unrecognised intents / requests.
-    .onDefault((session, args, next) => {
-        // Use a very basic flow controller.
-        // The intent given by LUIS is mapped to a js file in the folder "intents" and the intent name.
-        // The file will be included and run based on the exported function.
-        // Example: The "Welcome" intent would be routet to the "intents/welcome.js" file.
-
-        // include file system functions
-        var fileSystem = require('fs');
-        var filePath = require('path');
-
-        // Build path to intent source file
-        var intentSourcePath = filePath.join(__dirname, '/intents/' + args.intent.toLowerCase() + '.js');
-        var intentFileValid = true;
-
-        // Check if the intent actually exists in the file system.
-        try {
-            // Check on the file system by trying to get stats for the file.
-            var stat = fileSystem.statSync(intentSourcePath);
-
-            if (!stat.isFile()) {
-                // If the received stats are not for a file, throw an error.
-                intentFileValid = false;
-                console.log('Intent is not available: ' + intentSourcePath + ' not found (Not a file)');
-            }
-        } catch (e) {
-            // If no stats have been received, then throw an error.
-            intentFileValid = false;
-            console.log('Intent is not available: ' + intentSourcePath + ' not found (' + e.code + ')');
+    // Default intent for all intents / requests.
+    // This will be handed off to the front controller.
+    // Note that the bot only deals with dialogs 3 levels down.
+    // Yes, this is lazy and stupid, but I don't care for this PoC.
+    .onDefault([
+        function (session, args, next) {
+            frontController.runIntent(session, args, next, 1);
+        },
+        function (session, args, next) {
+            frontController.runIntent(session, args, next, 2);
+        },
+        function (session, args, next) {
+            frontController.runIntent(session, args, next, 3);
         }
-
-        // If it exist, try to run it.
-        if (intentFileValid) {
-            // Require file and run action.
-            var intentAction = require(intentSourcePath);
-            if (!intentAction(session, args, next)) {
-                // If something went wrong executing the intent, send a negative response.
-                session.send('Sorry, something went wrong handling \'%s\'.', session.message.text);
-            }
-        } else {
-            // If no mapping intent file could be found, send a negative response.
-            session.send('Sorry, I did not understand \'%s\'.', session.message.text);
-        }
-    });
+    ]);
 
 // Bind all dialogs to intents
 bot.dialog('/', intents);
