@@ -53,9 +53,6 @@ Azure Cloud infrastructure. That information is bound to a hashed version of you
 In other words: Your Skype ID is not stored directly, but replaced by a randomized ID.
 Granted, it's not really anonymous, but at least we don't store your Skype ID in the database.
 
-Note that for development reasons the bot currently stores your Skype ID as well. This will only
-be the case during pre-Alpha.
-
 Also, the bot uses the Microsoft Bot Framework and LUIS, which in turn collect and analyse
 your message and message content (including your ID). Please see the Microsoft Privacy
 Statement for more information regarding their data security and privacy.

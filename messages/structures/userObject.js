@@ -7,11 +7,6 @@ function UserObject() {
     // This is a UUID for this object, issued on creation.
     this.id = '';
 
-    // TODO: Remove this.
-    // Store the user id in the database for testing / debugging reasons
-    // during pre-alpha.
-    this.name = '';
-
     // Date / time the user was created.
     this.created = new Date();
 }

@@ -5,6 +5,7 @@ var DocumentDBInterface = require('./documentDBInterface');
 // Require crypto functionality to create hashes.
 var crypto = require('crypto');
 
+// Require UUID module.
 const uuidV1 = require('uuid/v1');
 
 // Require custom user objects, as defined in the structure.
@@ -73,11 +74,6 @@ class AccountingDataHandler {
 					// The user does not exist in the database yet.
 					// Create a new empty object for the user.
 					var newUserObject = new UserObject();
-
-					// TODO: Remove this.
-					// Store the user id in the database for testing / debugging reasons
-					// during pre-alpha.
-					newUserObject.name = userId;
 
 					// Store the newly created user object in the database.
 					this.documentDBInterface.createDocument(this.userHash, newUserObject)
