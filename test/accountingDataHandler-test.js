@@ -10,6 +10,7 @@ var SpendingObject = require('../messages/structures/spendingObject.js');
 
 // Require database class for additional verification.
 var DocumentDBInterface = require('../messages/classes/documentDBInterface');
+var documentDBInterface = new DocumentDBInterface(process.env['DocumentDBHost'], process.env['DocumentDBMasterKey'], process.env['DocumentDBDatabase'], process.env['DocumentDBCollection']);
 
 // Require crypto class for additional verification.
 var crypto = require('crypto');
@@ -337,16 +338,46 @@ describe('getSpendings', function () {
             });
     });
 
-        it('We can get spendings between a specific start and end date', function (done) {
+    it('We can get spendings between a specific start and end date', function (done) {
         accountingDataHandler = new AccountingDataHandler();
         accountingDataHandler.init(testUserId)
             .then(userobject => {
                 accountingDataHandler.getSpendings(false, testDateDayBeforeYesterday, testDateYesterday)
                     .then(spendings => {
                         assert.equal(spendings.length, 2);
+                        createdDatabaseDocuments.splice(createdDatabaseDocuments.length-1, 1);
                         done();
                     })
                     .catch(err => {
+                        done(err);
+                    })
+            })
+            .catch(err => {
+                assert.fail(err);
+                done(err);
+            });
+    });
+});
+
+
+describe('deleteLastSpending', function () {
+    it('After deleting one entry, there should only be 2 entries in the database', function (done) {
+        accountingDataHandler = new AccountingDataHandler();
+        accountingDataHandler.init(testUserId)
+            .then(userobject => {
+                accountingDataHandler.deleteLastSpending()
+                    .then(status => {
+                        accountingDataHandler.getSpendings()
+                            .then(spendings => {
+                                assert.equal(spendings.length, 2);
+                                done();
+                            })
+                            .catch(err => {
+                                done(err);
+                            })
+                    })
+                    .catch(err => {
+                        assert.fail(err);
                         done(err);
                     })
             })
@@ -365,6 +396,7 @@ describe('cleanup', function () {
                 .then(document => {
                 })
                 .catch(err => {
+                    assert.fail(err);
                 });
         }
         done();

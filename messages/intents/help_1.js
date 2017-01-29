@@ -17,7 +17,7 @@ var run = function (session, args, next) {
     session.send('You can tell me what you bought and how much money you spent. In turn, I can show you summaries and infographics, so you can use me for keeping track of your private or company expenses.');
     session.send('You can log expenses by saying things like: \'I bought some apples for 2.99\' or in short \'Apples for 2.99\'. In both cases I will remember the amount and the topic (apples).');
     session.send('If I did not understand correctly or logged something wrong you can correct me by saying \'Undo\' or \'Remove\'.');
-    session.send('Later you can ask \'What did I buy this week?\' to get an overview or \'How much did I spent on apples?\' for a more specific summary. You can play around with topics and times to get only a subset of data.');
+    session.send('Later you can ask \'What did I buy this week?\' to get an overview and use topics (\'How much did I spent on apples?\') or time periods (\'How much did I spent this week?\') for more specific summaries.');
 
     // Done.
     return true;

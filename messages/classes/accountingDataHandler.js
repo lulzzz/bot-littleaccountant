@@ -195,6 +195,37 @@ class AccountingDataHandler {
 				});
 		});
 	}
+
+
+	/**
+	 * Deletes the last spending for a user.
+	 *
+	 * Promised.
+	 *
+	 * @returns {Boolean|String} A promise for the database delete.
+	 * Resolve: Returns true.
+	 * Reject: Returns the error message.
+	 */
+	deleteLastSpending() {
+		// Initialise the promise.
+		return new Promise((resolve, reject) => {
+			this.getSpendings([], '', '')
+				.then(spendings => {
+					if (spendings.length > 0) {
+						let lastEntry = spendings[spendings.length - 1];
+						this.documentDBInterface.deleteDocument(lastEntry.id)
+							.then(status => {
+								return resolve(status);
+							})
+							.catch(err => {
+								return reject(err);
+							});
+					} else {
+						return reject(err);
+					}
+				});
+		});
+	}
 }
 
 // Export default new AccountingDataHandler();
